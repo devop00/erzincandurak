@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erzincan Otobüs Durakları</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .buttons {
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        iframe {
+            width: 80%;
+            height: 50%;
+            border: none;
+        }
+        .dropdown {
+            width: 80%;
+            margin-top: 20px;
+        }
+        .dropdown button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: left;
+        }
+        .dropdown-content {
+            display: none;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .dropdown-content a {
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+            color: #007BFF;
+            cursor: pointer;
+        }
+        .image-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .image-container img {
+            max-width: 50%;
+            height: auto;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Erzincan Otobüs Durakları</h1>
+    <div class="buttons">
+        <button onclick="openLocation()">Konumu Gör</button>
+        <button onclick="toggleImages()">Hat Haritaları</button>
+        <button onclick="openVideo()">Tanıtım Videosu</button>
+    </div>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1n2ALD7uZzML1gzev8ta-ND_zewLW-f8&ll=39.74637505384777%2C39.49904260000002&z=14"></iframe>
+    <div class="dropdown">
+        <button onclick="toggleDropdown()">Hat Bilgileri</button>
+        <div class="dropdown-content" id="dropdownContent">
+            <a href="https://bit.ly/1NOHAT" target="_blank">Hat 1</a>
+            <a href="https://bit.ly/2NOHAT" target="_blank">Hat 2</a>
+            <a href="https://bit.ly/3NOHAT" target="_blank">Hat 3</a>
+            <a href="https://bit.ly/4NOHAT" target="_blank">Hat 4</a>
+            <a href="https://bit.ly/5NOHAT" target="_blank">Hat 5</a>
+            <a href="https://bit.ly/3OVoVUr" target="_blank">Hat 6</a>
+            <a href="https://bit.ly/4fgxTGl" target="_blank">Hat 7</a>
+            <a href="https://bit.ly/3OU8t6S" target="_blank">Hat 8</a>
+        </div>
+    </div>
+    <div class="image-container" id="imageContainer">
+        <img src="https://i.hizliresim.com/bf3wvy4.jpg" alt="Hat Haritası 1" onclick="nextImage(0)">
+        <img src="https://i.hizliresim.com/fq4uxww.jpg" alt="Hat Haritası 2" onclick="nextImage(1)" style="display:none;">
+        <img src="https://i.hizliresim.com/1dar0j3.jpg" alt="Hat Haritası 3" onclick="nextImage(2)" style="display:none;">
+        <img src="https://i.hizliresim.com/9k76oq2.jpg" alt="Hat Haritası 4" onclick="nextImage(3)" style="display:none;">
+        <img src="https://i.hizliresim.com/9ppz7ve.jpg" alt="Hat Haritası 5" onclick="nextImage(4)" style="display:none;">
+        <img src="https://i.hizliresim.com/4wdizjs.jpg" alt="Hat Haritası 6" onclick="nextImage(5)" style="display:none;">
+        <img src="https://i.hizliresim.com/nbuvdnc.jpg" alt="Hat Haritası 7" onclick="nextImage(6)" style="display:none;">
+    </div>
+
+    <script>
+        function openLocation() {
+            window.open('https://www.google.com/maps/d/u/0/viewer?mid=1n2ALD7uZzML1gzev8ta-ND_zewLW-f8&ll=39.74637505384777%2C39.49904260000002&z=14', '_blank');
+        }
+
+        function toggleImages() {
+            var container = document.getElementById('imageContainer');
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'flex';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
+        function openVideo() {
+            alert('Tanıtım videosu yakında eklenecek!');
+        }
+
+        function toggleDropdown() {
+            var content = document.getElementById('dropdownContent');
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'flex';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+
+        function nextImage(index) {
+            var images = document.querySelectorAll('.image-container img');
+            images[index].style.display = 'none';
+            var nextIndex = (index + 1) % images.length;
+            images[nextIndex].style.display = 'block';
+        }
+    </script>
+</body>
+</html>
